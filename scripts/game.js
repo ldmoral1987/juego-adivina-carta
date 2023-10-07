@@ -45,10 +45,28 @@ function typeChange(id)
     var typeId = document.getElementById("type" + id).value;
     
     // Se suma 1 al palo teniendo en cuenta el módulo 4
-    typeId = (typeId + 1) % 4;
-    // document.getElementById("type" + id).value = typeId;
-
+    typeId = (parseInt(typeId) + 1) % 4;
+    document.getElementById("type" + id).value = typeId;
 
     // Se actualiza el palo teniendo en cuenta la suma
-    // document.getElementById("timg" + id).src = "./images/" + types[typeId] + ".png";
+    document.getElementById("timg" + id).src = "./images/" + types[typeId] + ".png";
+
+    // Si la carta actual no es la carta boca abajo (-), entonces
+    // cambiamos también la carta teniendo en cuenta el cambio de palo
+    if(cardId != "-")
+    {
+        document.getElementById("card" + id).src = "./images/" + types[typeId] + cards[cardId] + ".png";
+    }
+}
+
+// Selecciona las cartas
+function selectCards()
+{
+    // Lee las cuatro cartas seleccionadas
+    var card1 = cards[document.getElementById("id1").value] + types[document.getElementById("type1").value];
+    var card2 = cards[document.getElementById("id2").value] + types[document.getElementById("type2").value];
+    var card3 = cards[document.getElementById("id3").value] + types[document.getElementById("type3").value];
+    var card4 = cards[document.getElementById("id4").value] + types[document.getElementById("type4").value];
+
+    alert("Cartas seleccionadas:\n" + card1 + "," + card2 + "," + card3 + "," + card4);
 }

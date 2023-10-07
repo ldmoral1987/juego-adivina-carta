@@ -9,10 +9,10 @@
     <title>Juego de adivinación de cartas</title>
 </head>
 <body>
-    <div class="container-fluid p-5 bg-primary text-white text-center">
+    <div class="container-fluid p-4 bg-primary text-white text-center">
         <p>Introduce 4 cartas para adivinar la carta que falta</p> 
     </div>
-    <div class="container p-5 my-5 border text-center">
+    <div class="container p-4 my-5 border text-center">
         <div class="row">
             <div class="col-sm-3">
                 <img src="./images/arrow-up.png"/ id="up1" onclick="cardChange(1, 1)" height="10%">
@@ -24,7 +24,7 @@
                 <img src="./images/c.png" id="timg1" width="15%" onclick="typeChange(1)">
                 <br/>
                 <input type="hidden" id="id1" name="id1" value="-"> 
-                <input type="visible" id="type1" name="type1" value="0"> 
+                <input type="hidden" id="type1" name="type1" value="0"> 
             </div>
             <div class="col-sm-3">
                 <img src="./images/arrow-up.png"/ id="up2" onclick="cardChange(2, 1)" height="10%">
@@ -36,7 +36,7 @@
                 <img src="./images/c.png" id="timg2" width="15%" onclick="typeChange(2)">
                 <br/>
                 <input type="hidden" id="id2" name="id2" value="-"> 
-                <input type="visible" id="type2" name="type2" value="0"> 
+                <input type="hidden" id="type2" name="type2" value="0"> 
             </div>
             <div class="col-sm-3">
                 <img src="./images/arrow-up.png"/ id="up3" onclick="cardChange(3, 1)" height="10%">
@@ -48,7 +48,7 @@
                 <img src="./images/c.png" id="timg3" width="15%" onclick="typeChange(3)">
                 <br/>
                 <input type="hidden" id="id3" name="id3" value="-"> 
-                <input type="visible" id="type3" name="type3" value="0"> 
+                <input type="hidden" id="type3" name="type3" value="0"> 
             </div>
             <div class="col-sm-3">
                 <img src="./images/arrow-up.png"/ id="up4" onclick="cardChange(4, 1)" height="10%">
@@ -60,8 +60,11 @@
                 <img src="./images/c.png" id="timg4" width="15%" onclick="typeChange(4)">
                 <br/>
                 <input type="hidden" id="id4" name="id4" value="-"> 
-                <input type="visible" id="type4" name="type4" value="0"> 
+                <input type="hidden" id="type4" name="type4" value="0"> 
             </div>
+        </div> 
+        <div class="row">
+            <input type="button" id="send" name="send" value="Seleccionar cartas" onclick="selectCards()"> 
         </div> 
     </div>
 </body>
