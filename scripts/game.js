@@ -86,31 +86,62 @@ function selectCards()
 
         // Esta variable almacenará la cantidad de cartas que tenemos que sumar
         var add = 0;
+        console.log(idxCard1);
+        console.log(idxCard3);
+        console.log(idxCard3);
 
         // Con los índices, se puede determinar el orden en el que hay que sumar a la segunda carta
-        // idxCard1 - idxCard3 - idxCard4
-        // pequeño  - igual     - grande      -> Sumar 1
-        // pequeño  - grande    - igual       -> Sumar 2
-        // igual    - pequeño   - grande      -> Sumar 3
-        // igual    - grande    - pequeño     -> Sumar 4
-        // grande   - pequeño   - igual       -> Sumar 5
-        // grande   - igual     - pequeño     -> Sumar 6
-        if ((idxCard1 < idxCard3) && (idxCard3 < idxCard4) && (idxCard1 < idxCard4))
+        // idxCard1 -  idxCard3  - idxCard4
+        // pequeño  - intermedio - grande      -> Sumar 1
+        // pequeño  -   grande   - igual       -> Sumar 2
+        // igual    -  pequeño   - grande      -> Sumar 3
+        // igual    -   grande   - pequeño     -> Sumar 4
+        // grande   -   pequeño  - igual       -> Sumar 5
+        // grande   -   igual    - pequeño     -> Sumar 6
+        if ((idxCard1 < idxCard3) && (idxCard1 < idxCard4) && (idxCard3 < idxCard4))
             add = 1;
-        else if ((idxCard1 < idxCard3) && (idxCard3 > idxCard4) && (idxCard1 < idxCard4))
+        else if ((idxCard1 < idxCard3) && (idxCard1 < idxCard4) && (idxCard3 > idxCard4))
             add = 2;
-        else if ((idxCard1 < idxCard4) && (idxCard3 < idxCard4) && (idxCard1 > idxCard4))
+        else if ((idxCard1 > idxCard3) && (idxCard1 < idxCard4) && (idxCard3 < idxCard4))
             add = 3;
-        else if ((idxCard1 > idxCard4) && (idxCard3 > idxCard4) && (idxCard1 > idxCard4))
+        else if ((idxCard1 < idxCard3) && (idxCard1 > idxCard4) && (idxCard3 > idxCard4))
             add = 4;
-        else if ((idxCard1 > idxCard4) && (idxCard3 < idxCard4) && (idxCard1 > idxCard4))
+        else if ((idxCard1 > idxCard3) && (idxCard1 > idxCard4) && (idxCard3 < idxCard4))
             add = 5;
-        else if ((idxCard1 > idxCard4) && (idxCard3 > idxCard4) && (idxCard1 > idxCard4))
+        else if ((idxCard1 > idxCard3) && (idxCard1 > idxCard4) && (idxCard3 > idxCard4))
             add = 6;
+
+
+
+        // if ((idxCard1 < idxCard3) && (idxCard3 < idxCard4) && (idxCard1 < idxCard4))
+        //     add = 1;
+        // else if ((idxCard1 < idxCard3) && (idxCard3 > idxCard4) && (idxCard1 < idxCard4))
+        //     add = 2;
+        // else if ((idxCard1 < idxCard4) && (idxCard3 < idxCard4) && (idxCard1 > idxCard4))
+        //     add = 3;
+        // else if ((idxCard1 > idxCard4) && (idxCard3 > idxCard4) && (idxCard1 > idxCard4))
+        //     add = 4;
+        // else if ((idxCard1 > idxCard4) && (idxCard3 < idxCard4) && (idxCard1 > idxCard4))
+        //     add = 5;
+        // else if ((idxCard1 > idxCard4) && (idxCard3 > idxCard4) && (idxCard1 > idxCard4))
+        //     add = 6;
         
         // Se calcula la carta final (realizando el desplazamiento con la suma)
         // teniendo en cuenta el módulo 13 y añadiendo el palo de la carta al final
-        var answer = types[document.getElementById("type2").value] + ((parseInt(card2[0]) + add) % 13);
+        // Se busca el índice de la carta para calcular el desplazamiento
+        selectedIdx = cards.indexOf(card2[0]);
+        selectedCard = cards[(selectedIdx + add) % 13];
+
+        // Se calcula la carta final (carta adivinada)
+        answer = types[document.getElementById("type2").value] + selectedCard;
+ //       var answer = types[document.getElementById("type2").value] + ((parseInt(card2[0]) + add) % 13);
+// console.log(card2);
+// console.log(parseInt(card2[0]));
+ console.log(add);
+// console.log((parseInt(card2[0]) + add) % 13);
+// console.log(answer);
+
+console.log("Selected card: " + types[document.getElementById("type2").value] + selectedCard);
 
         // Se actualiza la carta del mensaje modal para mostrar la carta adivinada
         document.getElementById("selectedCard").src = "./images/" + answer + ".png";
