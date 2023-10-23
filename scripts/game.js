@@ -113,9 +113,13 @@ function selectCards()
         else if ((idxCard1 > idxCard4) && (idxCard3 > idxCard4) && (idxCard1 > idxCard4))
             add = 6;
 
-        console.log("Hay que sumar: " + add);
-
-
+        console.log(card2[0]);
+        console.log("Sumamos: " + add);
+        
+        // Se calcula la carta final (realizando el desplazamiento con la suma)
+        // teniendo en cuenta el módulo 13 y añadiendo el palo de la carta al final
+        var answer = ((parseInt(card2[0]) + add) % 13) + types[document.getElementById("type2").value];
+        console.log("Tu carta es: " + answer);
     }
     else
     {
