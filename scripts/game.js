@@ -76,14 +76,50 @@ function selectCards()
     // Se comprueba que las cartas sean diferentes
     if ( (card1 != card2) && (card1 != card3) && (card1 != card4) && (card2 != card3) && (card2 != card4) && (card3 != card4))
     {
+        // Se muestra un mensaje con las cartas seleccionadas
+        alert("Cartas seleccionadas:\n" + card1 + "," + card2 + "," + card3 + "," + card4);
 
-    alert("Cartas seleccionadas:\n" + card1 + "," + card2 + "," + card3 + "," + card4);
+        // Ahora se tiene que calcular el orden que tienen las cartas para ver cuánto se sumas
+        // Se consulta el vector de orden que contiene la ordenación maestra de todas las cartas
+        // Para esto, se calculará el índice en el que se encuentra cada una de las cartas
+        // Como se va a sumar sobre la carta 2, se calcula entonces el índice de las cartas 1, 3 y 4
+        idxCard1 = order.indexOf(card1);
+        idxCard3 = order.indexOf(card3);
+        idxCard4 = order.indexOf(card4);
 
-    // Ahora tenemos que ver qué orden tienen las cartas para ver cuánto sumamos
-    // Se consulta el vector de orden que contiene la ordenación maestra de todas las cartas
+        console.log(idxCard1);
+        console.log(idxCard3);
+        console.log(idxCard4);
+        var add = 0;
+
+        // Con los índices, se puede determinar el orden en el que hay que sumar a la segunda carta
+        // idxCard1 - idxCard3 - idxCard4
+        // pequeño  - igual     - grande      -> Sumar 1
+        // pequeño  - grande    - igual       -> Sumar 2
+        // igual    - pequeño   - grande      -> Sumar 3
+        // igual    - grande    - pequeño     -> Sumar 4
+        // grande   - pequeño   - igual       -> Sumar 5
+        // grande   - igual     - pequeño     -> Sumar 6
+        if ((idxCard1 < idxCard3) && (idxCard3 < idxCard4) && (idxCard1 < idxCard4))
+            add = 1;
+        else if ((idxCard1 < idxCard3) && (idxCard3 > idxCard4) && (idxCard1 < idxCard4))
+            add = 2;
+        else if ((idxCard1 < idxCard4) && (idxCard3 < idxCard4) && (idxCard1 > idxCard4))
+            add = 3;
+        else if ((idxCard1 > idxCard4) && (idxCard3 > idxCard4) && (idxCard1 > idxCard4))
+            add = 4;
+        else if ((idxCard1 > idxCard4) && (idxCard3 < idxCard4) && (idxCard1 > idxCard4))
+            add = 5;
+        else if ((idxCard1 > idxCard4) && (idxCard3 > idxCard4) && (idxCard1 > idxCard4))
+            add = 6;
+
+        console.log("Hay que sumar: " + add);
+
+
     }
     else
     {
+        // Se han detectado cartas duplicadas
         alert("Error: no se permite utilizar cartas duplicadas");
     }
 }
