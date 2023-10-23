@@ -1,5 +1,10 @@
 const cards = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "j", "q", "k"];
 const types = ["c", "d", "t", "p"];
+const order = ["1d", "1t", "1c", "1p", "2d", "2t", "2c", "2p", "3d", "3t", "3c", "3p",
+            "4d", "4t", "4c", "4p", "5d", "5t", "5c", "5p", "6d", "6t", "6c", "6p",
+            "7d", "7t", "7c", "7p", "8d", "8t", "8c", "8p", "9d", "9t", "9c", "9p",
+            "10d", "10t", "10c", "10p", "jd", "jt", "jc", "jp", "qd", "qt", "qc", "qp", 
+            "kd", "kt", "kc", "kp"];
 
 // Cambia la carta seleccionada, teniendo en cuenta el orden (-1 bajar, +1 subir)
 function cardChange(id, order)
@@ -68,5 +73,17 @@ function selectCards()
     var card3 = cards[document.getElementById("id3").value] + types[document.getElementById("type3").value];
     var card4 = cards[document.getElementById("id4").value] + types[document.getElementById("type4").value];
 
+    // Se comprueba que las cartas sean diferentes
+    if ( (card1 != card2) && (card1 != card3) && (card1 != card4) && (card2 != card3) && (card2 != card4) && (card3 != card4))
+    {
+
     alert("Cartas seleccionadas:\n" + card1 + "," + card2 + "," + card3 + "," + card4);
+
+    // Ahora tenemos que ver qué orden tienen las cartas para ver cuánto sumamos
+    // Se consulta el vector de orden que contiene la ordenación maestra de todas las cartas
+    }
+    else
+    {
+        alert("Error: no se permite utilizar cartas duplicadas");
+    }
 }
