@@ -111,20 +111,6 @@ function selectCards()
         else if ((idxCard1 > idxCard3) && (idxCard1 > idxCard4) && (idxCard3 > idxCard4))
             add = 6;
 
-
-
-        // if ((idxCard1 < idxCard3) && (idxCard3 < idxCard4) && (idxCard1 < idxCard4))
-        //     add = 1;
-        // else if ((idxCard1 < idxCard3) && (idxCard3 > idxCard4) && (idxCard1 < idxCard4))
-        //     add = 2;
-        // else if ((idxCard1 < idxCard4) && (idxCard3 < idxCard4) && (idxCard1 > idxCard4))
-        //     add = 3;
-        // else if ((idxCard1 > idxCard4) && (idxCard3 > idxCard4) && (idxCard1 > idxCard4))
-        //     add = 4;
-        // else if ((idxCard1 > idxCard4) && (idxCard3 < idxCard4) && (idxCard1 > idxCard4))
-        //     add = 5;
-        // else if ((idxCard1 > idxCard4) && (idxCard3 > idxCard4) && (idxCard1 > idxCard4))
-        //     add = 6;
         
         // Se calcula la carta final (realizando el desplazamiento con la suma)
         // teniendo en cuenta el módulo 13 y añadiendo el palo de la carta al final
@@ -134,14 +120,6 @@ function selectCards()
 
         // Se calcula la carta final (carta adivinada)
         answer = types[document.getElementById("type2").value] + selectedCard;
- //       var answer = types[document.getElementById("type2").value] + ((parseInt(card2[0]) + add) % 13);
-// console.log(card2);
-// console.log(parseInt(card2[0]));
- console.log(add);
-// console.log((parseInt(card2[0]) + add) % 13);
-// console.log(answer);
-
-console.log("Selected card: " + types[document.getElementById("type2").value] + selectedCard);
 
         // Se actualiza la carta del mensaje modal para mostrar la carta adivinada
         document.getElementById("selectedCard").src = "./images/" + answer + ".png";
