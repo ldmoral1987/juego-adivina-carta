@@ -86,9 +86,6 @@ function selectCards()
 
         // Esta variable almacenará la cantidad de cartas que tenemos que sumar
         var add = 0;
-        console.log(idxCard1);
-        console.log(idxCard3);
-        console.log(idxCard3);
 
         // Con los índices, se puede determinar el orden en el que hay que sumar a la segunda carta
         // idxCard1 -  idxCard3  - idxCard4
@@ -111,14 +108,25 @@ function selectCards()
         else if ((idxCard1 > idxCard3) && (idxCard1 > idxCard4) && (idxCard3 > idxCard4))
             add = 6;
 
-        
-        // Se calcula la carta final (realizando el desplazamiento con la suma)
+            // Se calcula la carta final (realizando el desplazamiento con la suma)
         // teniendo en cuenta el módulo 13 y añadiendo el palo de la carta al final
         // Se busca el índice de la carta para calcular el desplazamiento
-        selectedIdx = cards.indexOf(card2[0]);
-        selectedCard = cards[(selectedIdx + add) % 13];
+        // Hay que tener en cuenta, según el código de las cartas, que todas tienen 2 caracteres
+        // (1c, 1d, jd...) salvo el 10, que incorpora los dos dígitos más el palo (10p, 10d...)
+        selectedIdx = 0;
+        if(card2.length == 3)
+        {
+            // Si el código de la carta tiene 3 caracteres, la carta es un 10
+            selectedIdx = cards.indexOf("10");
+        }
+        else 
+        {
+            // Si no, obtenemos el código de la carta fijándonos en el primer caracter
+            selectedIdx = cards.indexOf(card2[0]);
+        }
 
         // Se calcula la carta final (carta adivinada)
+        selectedCard = cards[(selectedIdx + add) % 13];
         answer = types[document.getElementById("type2").value] + selectedCard;
 
         // Se actualiza la carta del mensaje modal para mostrar la carta adivinada
